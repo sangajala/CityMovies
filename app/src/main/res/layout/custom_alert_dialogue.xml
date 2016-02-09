@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:background="@drawable/shape_white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/SVN_alert_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/SVN_btn_title_text_size"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+      
+        android:background="#2957A4" />
+
+    <ScrollView
+        android:id="@+id/CTE_Scroll"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+      
+        >
+
+        <TextView
+            android:id="@+id/CTE_alert_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:gravity="left|center_horizontal"
+            android:padding="5dp"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/CTE_alert_ConfrmtnText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+       
+        android:focusableInTouchMode="true"
+        android:gravity="left|center_horizontal"
+        android:padding="5dp"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/CTE_alert_search_buy_lead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      
+        android:layout_margin="10dp"
+        android:background="@drawable/txt_box_blank"
+        android:hint="Buy Lead Id,Email,Name,Mobile,Make,Model"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="#000000"
+        android:textSize="@dimen/SVN_btn_small_text_size"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rl_view"
+        
+       
+         >
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#2957A4" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view2"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/CTE_btn_ok"
+                style="@style/CM_btn_style"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/ok" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view2"
+            android:layout_marginTop="2dp"
+            android:weightSum="2" >
+
+            <Button
+                android:id="@+id/CTE_btn_search"
+                style="@style/CM_btn_style"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:text="@string/search"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/CTE_btn_cancel"
+                style="@style/CM_btn_style"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:text="@string/cancel"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<resources>
+
+    <dimen name="SVN_layout_margin">90dp</dimen>
+    <dimen name="SVN_buttons_layout_margin">40dp</dimen>
+    <dimen name="SVN_et_text_size">16sp</dimen>
+    <dimen name="SVN_txtview_text_size">22sp</dimen>
+    <dimen name="SVN_txtview_text_sizes">16sp</dimen>
+    <dimen name="SVN_txtview_header_sizes">20sp</dimen>
+    <dimen name="SVN_txtview_spinner_sizes">18sp</dimen>
+    <dimen name="SVN_btn_text_size">25sp</dimen>
+    <dimen name="SVN_btn_height">70dp</dimen>
+    <dimen name="SVN_btn_small_height">60dp</dimen>
+    <dimen name="SVN_btn_small_text_size">22sp</dimen>
+    <dimen name="bt_tab_text_size">16sp</dimen>
+    <dimen name="bt_text_size">16sp</dimen>
+
+
+</resources>
