@@ -8,5 +8,7 @@
     <color name="colorblack">#000000</color>
     <color name="colortransparent">#00000000</color>
     <color name="black_overlay">#66000000</color>
+    <color name="colorgreen">#39B5A6</color>
+    <color name="colorblue">#00abea</color>
 
 </resources>

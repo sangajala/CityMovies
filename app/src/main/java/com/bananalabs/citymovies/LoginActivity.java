@@ -3,16 +3,19 @@ package com.bananalabs.citymovies;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -67,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ProgressDialog _dialog;
     private AppConstants objappcontants;
     private TextView CM_txt_signup;
+    Toolbar mToolbar;
 
 
     @Override
@@ -97,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         profileTracker.startTracking();
 
         initViews();
+        initToolbar();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -106,6 +111,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .build();
 
 
+    }
+
+    private void initToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.colorwhite), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        setTitle(getString(R.string.login));
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.colorwhite));
+
+
+        //setupEvenlyDistributedToolbar();
     }
 
     public void initViews() {
@@ -119,12 +140,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setGooglePlusButtonText(CM_btn_gplus, "Login");
 
 
-
-
 //        CM_btn_fb.setBackgroundResource(R.drawable.fb);
         CM_btn_fb.setText("Login");
         CM_btn_fb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-
 
 
         CM_btn_fb.setReadPermissions("user_friends");
@@ -132,12 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         CM_btn_fb.registerCallback(mCallbackManager, mFacebookCallback);
 
 
-
-
         CM_btn_gplus.setOnClickListener(this);
 
         CM_linearlogin.setOnClickListener(this);
         CM_txt_signup.setOnClickListener(this);
+
 
         _dialog = new ProgressDialog(LoginActivity.this);
         _dialog.setCancelable(false);
@@ -357,6 +374,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 resolveSignInError();
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+
+            Intent objintent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(objintent);
+            finish();
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 
     @Override

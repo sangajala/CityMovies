@@ -7,9 +7,17 @@
     android:background="@drawable/reg_xhdpi"
     tools:context="com.bananalabs.citymovies.LoginActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
@@ -24,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/logo_" />
+                android:src="@drawable/logo" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -43,7 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorwhite" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -64,11 +73,29 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorwhite" />
 
 
             </android.support.design.widget.TextInputLayout>
 
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/buttons_layout"
@@ -93,11 +120,8 @@
                     android:src="@drawable/arr" />
 
             </LinearLayout>
-
-
         </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

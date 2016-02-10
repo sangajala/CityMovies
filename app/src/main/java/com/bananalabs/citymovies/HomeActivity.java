@@ -1,6 +1,10 @@
 package com.bananalabs.citymovies;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,14 +16,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.citymovies.adapter.GridViewAdapter;
+import com.com.citymovies.POJO.ImageItem;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
@@ -28,7 +36,9 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.plus.People;
 import com.google.android.gms.plus.Plus;
 
-public  class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+import java.util.ArrayList;
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         ResultCallback<People.LoadPeopleResult> {
 
     private AppConstants objappcontants;
@@ -36,8 +46,11 @@ public  class HomeActivity extends AppCompatActivity implements NavigationView.O
     GoogleApiClient mGoogleApiClient;
     boolean mSignInClicked;
     Toolbar mToolbar;
-    ImageView iv_profile;
-    TextView username;
+    private ImageView iv_profile;
+    private TextView username;
+
+    private GridView gridView;
+    private GridViewAdapter gridAdapter;
 
 
     @Override
@@ -87,6 +100,29 @@ public  class HomeActivity extends AppCompatActivity implements NavigationView.O
         username = (TextView) headerView.findViewById(R.id.txtname);
 
         iv_profile = (ImageView) headerView.findViewById(R.id.iv_profile);
+
+        gridView = (GridView) findViewById(R.id.CM_gridView);
+        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+        gridView.setAdapter(gridAdapter);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            gridView.setNestedScrollingEnabled(true);
+        }
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+
+                //Create intent
+//                Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
+//                intent.putExtra("title", item.getTitle());
+//                intent.putExtra("image", item.getImage());
+//
+//                //Start details activity
+//                startActivity(intent);
+            }
+        });
 
         if (!AppConstants.getFBLoginstatusFromSharedPreference() && !AppConstants.getGplLoginstatusFromSharedPreference() && !AppConstants.getSLoginstatusFromSharedPreference()) {
 
@@ -276,5 +312,18 @@ public  class HomeActivity extends AppCompatActivity implements NavigationView.O
     @Override
     public void onClick(View v) {
 
+    }
+
+    /**
+     * Prepare some dummy data for gridview
+     */
+    private ArrayList<ImageItem> getData() {
+        final ArrayList<ImageItem> imageItems = new ArrayList<>();
+        TypedArray imgs = getResources().obtainTypedArray(R.array.image_ids);
+        for (int i = 0; i < imgs.length(); i++) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+            imageItems.add(new ImageItem(bitmap, "Image#" + i));
+        }
+        return imageItems;
     }
 }
