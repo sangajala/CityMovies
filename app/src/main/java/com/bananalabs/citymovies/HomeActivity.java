@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.citymovies.adapter.GridViewAdapter;
+import com.citymovies.utils.ExpandableHeightGridView;
 import com.com.citymovies.POJO.ImageItem;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
@@ -49,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ImageView iv_profile;
     private TextView username;
 
-    private GridView gridView;
+    private ExpandableHeightGridView gridView;
     private GridViewAdapter gridAdapter;
 
 
@@ -101,14 +102,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         iv_profile = (ImageView) headerView.findViewById(R.id.iv_profile);
 
-        gridView = (GridView) findViewById(R.id.CM_gridView);
+        gridView = (ExpandableHeightGridView) findViewById(R.id.CM_gridView);
+        gridView.setExpanded(true);
+
         gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
         gridView.setAdapter(gridAdapter);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            gridView.setNestedScrollingEnabled(true);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//
+//            gridView.setNestedScrollingEnabled(true);
+//        }
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
