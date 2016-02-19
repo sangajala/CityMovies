@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //        CM_btn_fb.setBackgroundResource(R.drawable.fb);
         CM_btn_fb.setText("Login");
-        CM_btn_fb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        //CM_btn_fb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
 
 
         CM_btn_fb.setReadPermissions("user_friends");
@@ -230,6 +230,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             Toast.makeText(getApplicationContext(),
                     "You are Logged In " + profile.getName(), Toast.LENGTH_LONG).show();
+
 
             Intent objintent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(objintent);

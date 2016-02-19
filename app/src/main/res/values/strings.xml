@@ -8,6 +8,8 @@
     <string name="registration">Registration</string>
 
     <string name="facebook_app_id">1075159312507316</string>
+    <string name="youtubedeveloperkey">AIzaSyDruUKn4sgs5VI6bwI4UUEHIaYPuUruzPE</string>
+    <string name="youtube_video_code">_oEA18Y8gM0</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -60,6 +62,30 @@
         <item>@drawable/image_8</item>
         <item>@drawable/image_9</item>
     </string-array>
+
+    <string-array name="image_names">
+        <item>Speedunnodu</item>
+        <item>Express Raja</item>
+        <item>Nenu Sailaja</item>
+        <item>BANG BANG</item>
+        <item>SANAM RE</item>
+        <item>AIR LIFT</item>
+        <item>BATMAN V SUPERMAN</item>
+        <item>WALKING DEAD</item>
+        <item>CIVIL WAR</item>
+
+        <item>Speedunnodu</item>
+        <item>Express Raja</item>
+        <item>Nenu Sailaja</item>
+        <item>BANG BANG</item>
+        <item>SANAM RE</item>
+        <item>AIR LIFT</item>
+        <item>BATMAN V SUPERMAN</item>
+        <item>WALKING DEAD</item>
+        <item>CIVIL WAR</item>
+
+    </string-array>
+
     <string name="title_activity_movie_details">MovieDetailsActivity</string>
 
 </resources>

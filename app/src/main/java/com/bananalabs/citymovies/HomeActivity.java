@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,16 +78,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolbar);
         //getSupportActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(false);
+
         setTitle(getString(R.string.app_name));
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorwhite));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        toggle.setDrawerIndicatorEnabled(false);
+        toggle.setHomeAsUpIndicator(R.drawable.ham);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        //setupEvenlyDistributedToolbar();
+
+        this.mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawer.isDrawerOpen(Gravity.LEFT)) {
+
+                    drawer.closeDrawer(Gravity.LEFT);
+
+                } else {
+
+                    drawer.openDrawer(Gravity.LEFT);
+
+                }
+            }
+        });
     }
+
 
     public void initViews() {
 
@@ -115,15 +137,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
 
-                //Create intent
-//                Intent intent = new Intent(HomeActivity.this, DetailsActivity.class);
-//                intent.putExtra("title", item.getTitle());
-//                intent.putExtra("image", item.getImage());
-//
-//                //Start details activity
-//                startActivity(intent);
+               // ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+
+
+//                Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+//                objintent.putExtra("title", item.getTitle());
+//                startActivity(objintent);
+
             }
         });
 
@@ -321,11 +342,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
      * Prepare some dummy data for gridview
      */
     private ArrayList<ImageItem> getData() {
+        String[] movienames = this.getResources().getStringArray(R.array.image_names);
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
         TypedArray imgs = getResources().obtainTypedArray(R.array.image_ids);
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            imageItems.add(new ImageItem(bitmap, "Image#" + i));
+            imageItems.add(new ImageItem(bitmap, movienames[i]));
         }
         return imageItems;
     }

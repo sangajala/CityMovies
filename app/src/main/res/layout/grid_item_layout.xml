@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        />
 
     <TextView
         android:id="@+id/text"
@@ -17,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:textSize="12sp" />
+        android:textColor="@color/colorwhite"
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/CM_txtview_moviename_sizes" />
 
 </LinearLayout>
