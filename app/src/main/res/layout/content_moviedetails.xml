@@ -1,49 +1,313 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_bg">
+    android:layout_gravity="fill_vertical"
+    android:background="@drawable/detailbg"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/scrollView"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="fill_vertical"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/webvideo_layout2"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speedunnodu (2016)"
+                android:textColor="@color/colorwhite"
+                android:textSize="@dimen/SVN_txtview_header_sizes" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:maxLines="2"
+                android:text="U/A | 150 min | Action,Drama | 5 February 2016 (India)"
+                android:textColor="@color/colorwhite"
+                android:textSize="@dimen/SVN_txtview_text_sizes" />
 
 
-                <ImageView
-                    android:id="@+id/img_thumnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:layout_centerInParent="true"
-                    android:scaleType="fitXY" />
+        </LinearLayout>
 
-                <!--<ImageView
-                    android:id="@+id/iv_play_pause"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorwhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/play" />-->
-            </RelativeLayout>
+                    android:gravity="left"
+                    android:text="Director: Bhimaneni Srinivasa Rao"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
 
-        </android.support.v4.widget.NestedScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="Produced by: Bheemaneni Suneetha, Bheemaneni Roshitha Sai"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="Stars: Bellamkonda Sreenivas, Sonarika Bhadoria, Prakash Raj"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="| See full cast and crew >>"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorwhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:lines="5"
+                    android:maxLines="5"
+                    android:text="It is a tale of five friends. Sobhan (Bellamkonda Srinivas) is a rich youth in a village in Rayalseema. He does anything for his friends. When one of his friends is having trouble in conveying his love to a girl, Sobhan goes to help him. And the girl happens to be the one he proposed sometime back. Along with his friend, he travels daily in the bus to her college to make his friend's love successful. But the girl Vasanthi (Sonarika) falls for Sobhan. This creates rift between friends and the story takes many turns."
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorwhite" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Gallery and Videos"
+                android:textColor="@color/colorwhite"
+                android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/moviepicspager"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:paddingRight="5dp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="5.8/10"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:text="BookMYShow"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="5.3/10"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:text="IMDB"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="2.5/5"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:text="Greatandhra"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorwhite"
+                    android:text="3/5"
+                android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_vertical"
+                    android:text="123Telugu"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_text_sizes" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

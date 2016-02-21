@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     boolean mSignInClicked;
     Toolbar mToolbar;
     private ImageView iv_profile;
-    private TextView username;
+    private TextView username, CM_txtmovies, CM_txttheat;
 
     private ExpandableHeightGridView gridView;
     private GridViewAdapter gridAdapter;
@@ -75,12 +75,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        CM_txtmovies = (TextView) mToolbar.findViewById(R.id.CM_txtmovies);
+
+        CM_txttheat = (TextView) mToolbar.findViewById(R.id.CM_txttheat);
+
+        CM_txtmovies.setOnClickListener(this);
+        CM_txttheat.setOnClickListener(this);
+
         setSupportActionBar(mToolbar);
         //getSupportActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(false);
 
-        setTitle(getString(R.string.app_name));
+        setTitle("");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorwhite));
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,12 +146,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-               // ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
 
 
-//                Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
-//                objintent.putExtra("title", item.getTitle());
-//                startActivity(objintent);
+                Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+                objintent.putExtra("title", item.getTitle());
+                startActivity(objintent);
 
             }
         });
@@ -335,6 +343,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == CM_txtmovies.getId()) {
+
+            Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+            startActivity(objintent);
+
+        } else if (v.getId() == CM_txttheat.getId()) {
+
+            Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+            startActivity(objintent);
+        }
 
     }
 

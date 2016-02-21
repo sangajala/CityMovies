@@ -9,7 +9,8 @@
 
     <string name="facebook_app_id">1075159312507316</string>
     <string name="youtubedeveloperkey">AIzaSyDruUKn4sgs5VI6bwI4UUEHIaYPuUruzPE</string>
-    <string name="youtube_video_code">_oEA18Y8gM0</string>
+    <string name="youtube_video_code">kAxTqRBOrKw</string>
+    <string name="error_init_failure">Initialization failure: Unable to play video</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -63,6 +64,18 @@
         <item>@drawable/image_9</item>
     </string-array>
 
+    <integer-array name="movie_imgs">
+
+        <item>@drawable/speedunnodu_1</item>
+        <item>@drawable/speedunnodu_2</item>
+        <item>@drawable/speedunnodu_3</item>
+
+        <item>@drawable/speedunnodu_4</item>
+        <item>@drawable/speedunnodu_5</item>
+        <item>@drawable/speedunnodu_6</item>
+
+    </integer-array>
+
     <string-array name="image_names">
         <item>Speedunnodu</item>
         <item>Express Raja</item>
@@ -87,5 +100,6 @@
     </string-array>
 
     <string name="title_activity_movie_details">MovieDetailsActivity</string>
+    <string name="title_activity_movies_tab">MoviesTabActivity</string>
 
 </resources>

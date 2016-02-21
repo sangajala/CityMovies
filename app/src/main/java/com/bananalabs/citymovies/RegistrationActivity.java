@@ -37,9 +37,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         mToolbar.setTitleTextColor(getResources().getColor(R.color.colorwhite));
 
 
-
-
-        //setupEvenlyDistributedToolbar();
     }
 
     @Override
