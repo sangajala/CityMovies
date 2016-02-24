@@ -23,6 +23,15 @@
         <item name="android:textColor">@color/colorwhite</item>
     </style>
 
+    <style name="NavigationTab" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@color/colorwhite</item>
+        <item name="tabTextAppearance">@style/NavigationTabTextAppeareance</item>
+    </style>
+
+    <style name="NavigationTabTextAppeareance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/colorwhite</item>
+    </style>
+
     <style name="FullscreenTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>

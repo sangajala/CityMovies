@@ -346,13 +346,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         if (v.getId() == CM_txtmovies.getId()) {
 
-            Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+            Intent objintent = new Intent(HomeActivity.this, MoviesTabActivity.class);
+            objintent.putExtra("movies","movies");
             startActivity(objintent);
+            finish();
 
         } else if (v.getId() == CM_txttheat.getId()) {
 
-            Intent objintent = new Intent(HomeActivity.this, MovieDetailsActivity.class);
+            Intent objintent = new Intent(HomeActivity.this, MoviesTabActivity.class);
+            objintent.putExtra("movies","theaters");
             startActivity(objintent);
+            finish();
         }
 
     }

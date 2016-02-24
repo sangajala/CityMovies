@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -71,7 +73,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
 
-
     private void initToolbar() {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,7 +92,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         try {
 
 
-             moviepics = getResources().getIntArray(R.array.movie_imgs);
+            moviepics = getResources().getIntArray(R.array.movie_imgs);
 
             _pager = (ViewPager) findViewById(R.id.moviepicspager);
 
@@ -197,8 +198,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
                                              public void onClick(View v) {
 
                                                  //_pager.setCurrentItem(position);
-//                                                 Intent objintent = new Intent(MovieDetailsActivity.this, GalleryActivity.class);
-//                                                 startActivity(objintent);
+                                                 Intent objintent = new Intent(MovieDetailsActivity.this, GalleryActivity.class);
+                                                 startActivity(objintent);
+                                                 finish();
                                              }
                                          }
 
@@ -257,9 +259,24 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent objintent = new Intent(MovieDetailsActivity.this, HomeActivity.class);
-        startActivity(objintent);
-        finish();
+        if (YoutubeOverlayFragment.isFullScreen()) {
+            YoutubeOverlayFragment. ytplayer.setFullscreen(false);
+        }else{
+
+            finish();
+        }
+
+//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.webvideo_layout2);
+//        Log.e("fragment.isVisible()", "  " + fragment.isVisible());
+//        if (fragment != null && fragment.isVisible()) {
+//            //finish();
+//            super.onBackPressed();
+//        }
+        //super.onBackPressed();
+
+//        Intent objintent = new Intent(MovieDetailsActivity.this, HomeActivity.class);
+//        startActivity(objintent);
+//        finish();
 
     }
 

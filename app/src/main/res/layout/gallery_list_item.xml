@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical" >
+
+            <ImageView
+                android:id="@+id/CM_iv_movie"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_backdrop_height"
+                android:scaleType="fitXY"
+                android:src="@drawable/speedunnodu_1" />
+
+            <ImageView
+                android:id="@+id/VideoPreviewPlayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/play" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/linear_selection"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/CM_txtmovieName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorwhite"
+                android:textSize="@dimen/SVN_txtview_header_sizes" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/censor" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart" />
+
+                <TextView
+                    android:id="@+id/txtrating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="82%"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="@dimen/SVN_txtview_header_sizes" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

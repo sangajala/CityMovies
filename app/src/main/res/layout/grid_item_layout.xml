@@ -21,6 +21,7 @@
         android:gravity="center"
         android:textColor="@color/colorwhite"
         android:layout_marginLeft="5dp"
+        android:visibility="gone"
         android:textSize="@dimen/CM_txtview_moviename_sizes" />
 
 </LinearLayout>
