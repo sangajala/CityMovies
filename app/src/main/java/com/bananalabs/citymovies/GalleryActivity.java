@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.citymovies.adapter.Adapter;
+import com.citymovies.utils.YoutubeOverlayFragment;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class GalleryActivity extends AppCompatActivity {
     ViewPager g_viewpager;
     TabLayout CM_gtabs;
     String movieslist = "";
+    YoutubeOverlayFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,13 @@ public class GalleryActivity extends AppCompatActivity {
     public void initViews() {
 
 
+        fragment = new YoutubeOverlayFragment();
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.webvideo_layout2, fragment)
+                .commit();
+
         g_viewpager = (ViewPager) findViewById(R.id.g_viewpager);
 
         CM_gtabs = (TabLayout) findViewById(R.id.CM_gtabs);
@@ -68,7 +78,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        adapter.addFragment(new VideosListFragment(), "Videos");
+        adapter.addFragment(new VideosListFragment(fragment), "Videos");
         adapter.addFragment(new PhotosListFragment(), "Photos");
 
         viewPager.setAdapter(adapter);

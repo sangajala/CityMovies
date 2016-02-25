@@ -12,7 +12,9 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.Toast;
 
 import com.bananalabs.citymovies.R;
@@ -23,7 +25,7 @@ import com.google.common.primitives.Ints;
 
 import java.util.ArrayList;
 
-public class YoutubeOverlayFragment extends Fragment implements OnBackPressedListener {
+public class YoutubeOverlayFragment extends Fragment implements OnBackPressedListener, YouTubePlayer.OnInitializedListener {
 
     private static boolean fullscreen;
     public static YouTubePlayer ytplayer;
@@ -35,6 +37,7 @@ public class YoutubeOverlayFragment extends Fragment implements OnBackPressedLis
     private String ytKey;
     private static final String HIDEABLE_VIEWS = "HIDEABLE_VIEWS";
     private Display display;
+    private View attachedImgContainer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,6 @@ public class YoutubeOverlayFragment extends Fragment implements OnBackPressedLis
         this.ytKey = getString(R.string.youtubedeveloperkey);
 
 
-
         videoContainer = inflater.inflate(R.layout.you_tube_api, container, false);
 
         YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
@@ -77,36 +79,7 @@ public class YoutubeOverlayFragment extends Fragment implements OnBackPressedLis
         bundle.putString(YoutubeOverlayFragment.YT_DEVELOPER_KEY, ytKey);
         youTubePlayerFragment.setArguments(bundle);
 
-        youTubePlayerFragment.initialize(getString(R.string.youtubedeveloperkey), new YouTubePlayer.OnInitializedListener() {
-
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
-
-                ytplayer = player;
-
-                if (!wasRestored) {
-                    //player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                    ytplayer.cueVideo(getString(R.string.youtube_video_code));
-
-                    ytplayer.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
-
-                        @Override
-                        public void onFullscreen(boolean _isFullScreen) {
-                            fullscreen = _isFullScreen;
-                        }
-                    });
-                    //player.play();
-                }
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult error) {
-                // YouTube error
-                String errorMessage = error.toString();
-                Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
-                Log.d("errorMessage:", errorMessage);
-            }
-        });
+        youTubePlayerFragment.initialize(getString(R.string.youtubedeveloperkey), this);
 
         return videoContainer;
     }
@@ -147,6 +120,68 @@ public class YoutubeOverlayFragment extends Fragment implements OnBackPressedLis
 
     }
 
+    public void onClick(View view, String videoId, int position) {
+        setVideoId(videoId);
+        attachToView(view, position);
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
+        if (ytplayer != null && this.videoId != null) {
+            ytplayer.loadVideo(this.videoId);
+            videoContainer.setVisibility(View.VISIBLE);
+        } else {
+            ViewGroup.LayoutParams params = videoContainer.getLayoutParams();
+            params.height = 0;
+            params.width = 0;
+            videoContainer.setLayoutParams(params);
+            videoContainer.setVisibility(View.GONE);
+        }
+    }
+
+    private void attachToView(final View attachedContainer, final int position) {
+
+        this.attachedImgContainer = attachedContainer;
+        setVideoPostion(this.attachedImgContainer);
+        this.attachedImgContainer.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (!fullscreen) {
+                    setVideoPostion(YoutubeOverlayFragment.this.attachedImgContainer);
+                }
+            }
+        });
+//        if (attachedListView instanceof AbsListView) {
+//            ((AbsListView) attachedListView).setOnScrollListener(new AbsListView.OnScrollListener() {
+//                @Override
+//                public void onScrollStateChanged(AbsListView view, int scrollState) {
+//
+//                }
+//
+//                @Override
+//                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                    if ((position < (firstVisibleItem + visibleItemCount)) && (position >= firstVisibleItem)) {
+//                        YoutubeOverlayFragment.this.videoContainer.setVisibility(View.VISIBLE);
+//                    } else {
+//                        YoutubeOverlayFragment.this.videoContainer.setVisibility(View.GONE);
+//                    }
+//                }
+//            });
+//        }
+
+    }
+
+    private void setVideoPostion(View attachedView) {
+        int postion[] = new int[2];
+        attachedView.getLocationOnScreen(postion);
+        videoContainer.setX(postion[0]);
+        videoContainer.setY(postion[1]);
+        ViewGroup.LayoutParams params = videoContainer.getLayoutParams();
+        params.height = attachedView.getHeight();
+        params.width = attachedView.getWidth();
+        videoContainer.setLayoutParams(params);
+    }
+
 
     /**
      * Exit fullscreen mode of yt player
@@ -173,4 +208,32 @@ public class YoutubeOverlayFragment extends Fragment implements OnBackPressedLis
     }
 
 
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
+
+        ytplayer = player;
+
+        if (!wasRestored && videoId != null) {
+            //player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+            ytplayer.cueVideo(videoId);
+
+            ytplayer.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
+
+                @Override
+                public void onFullscreen(boolean _isFullScreen) {
+                    fullscreen = _isFullScreen;
+                }
+            });
+            //player.play();
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult error) {
+
+        // YouTube error
+        String errorMessage = error.toString();
+        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+        Log.d("errorMessage:", errorMessage);
+    }
 }

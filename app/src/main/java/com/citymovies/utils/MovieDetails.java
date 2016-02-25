@@ -54,4 +54,16 @@ public class MovieDetails {
             "AIR LIFT", "BATMAN V SUPERMAN", "WALKING DEAD", "CIVIL WAR",
     };
 
+    public static final String[] youtubeUrls = new String[]{
+            "Ys2B2MahwFc",
+            "YDpRur0T9iQ",
+            "i916BRRHoTg",
+            "LRARHtMzZQE",
+            "fvQZkpnb764",
+            "vb5xCMbMfZ0",
+            "PRjWvVQz-NI",
+            "lUaxF2gGumU",
+            "0L7iH3foZU0",
+    };
+
 }

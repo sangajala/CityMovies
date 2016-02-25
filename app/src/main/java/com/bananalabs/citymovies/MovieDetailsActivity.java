@@ -260,24 +260,29 @@ public class MovieDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         if (YoutubeOverlayFragment.isFullScreen()) {
-            YoutubeOverlayFragment. ytplayer.setFullscreen(false);
+            YoutubeOverlayFragment.ytplayer.setFullscreen(false);
         }else{
 
             finish();
         }
 
-//        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.webvideo_layout2);
-//        Log.e("fragment.isVisible()", "  " + fragment.isVisible());
-//        if (fragment != null && fragment.isVisible()) {
-//            //finish();
-//            super.onBackPressed();
-//        }
-        //super.onBackPressed();
 
-//        Intent objintent = new Intent(MovieDetailsActivity.this, HomeActivity.class);
-//        startActivity(objintent);
-//        finish();
+    }
 
+    @Override
+    public void onDestroy() {
+        if (YoutubeOverlayFragment.ytplayer != null) {
+            YoutubeOverlayFragment.ytplayer = null;
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        if (YoutubeOverlayFragment.ytplayer != null) {
+            YoutubeOverlayFragment.ytplayer = null;
+        }
+        super.onStop();
     }
 
 

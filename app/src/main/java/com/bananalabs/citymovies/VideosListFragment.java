@@ -20,6 +20,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -31,11 +32,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.citymovies.utils.MovieDetails;
+import com.citymovies.utils.YoutubeOverlayFragment;
+import com.com.citymovies.POJO.ImageItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VideosListFragment extends Fragment {
+
+    ImageItem objimageitem;
+    public static  YoutubeOverlayFragment fragment;
+
 
     @Nullable
     @Override
@@ -50,16 +57,23 @@ public class VideosListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
-                getRandomSublist(MovieDetails.sCheeseStrings, 9)));
+                getRandomSublist(MovieDetails.sCheeseStrings, 9, MovieDetails.youtubeUrls)));
     }
 
-    private List<String> getRandomSublist(String[] array, int amount) {
+    private  List<ImageItem> getRandomSublist(String[] array, int amount, String[] urls) {
 
-        ArrayList<String> list = new ArrayList<>(amount);
+
+
+        ArrayList<ImageItem> list = new ArrayList<ImageItem>(amount);
 
         for (int i = 0; i < amount; i++) {
 
-            list.add(array[i]);
+            objimageitem = new ImageItem();
+
+            objimageitem.setMoviename(array[i]);
+            objimageitem.setMovietrailerurl(urls[i]);
+
+            list.add(objimageitem);
         }
 
 //        Random random = new Random();
@@ -72,21 +86,24 @@ public class VideosListFragment extends Fragment {
     public static class SimpleStringRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> {
 
+        YoutubeOverlayFragment sfragment = fragment;
+
         private final TypedValue mTypedValue = new TypedValue();
         private int mBackground;
-        private List<String> mValues;
+        private List<ImageItem> mValues;
 
-        public static class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             public String mBoundString;
 
             public final View mView;
-            public final ImageView mImageView;
+            public final ImageView mImageView, VideoPreviewPlayButton;
             public final TextView mTextView;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
                 mImageView = (ImageView) view.findViewById(R.id.CM_iv_movie);
+                VideoPreviewPlayButton = (ImageView) view.findViewById(R.id.VideoPreviewPlayButton);
                 mTextView = (TextView) view.findViewById(R.id.CM_txtmovieName);
             }
 
@@ -98,10 +115,10 @@ public class VideosListFragment extends Fragment {
         }
 
         public String getValueAt(int position) {
-            return mValues.get(position);
+            return mValues.get(position).getMoviename();
         }
 
-        public SimpleStringRecyclerViewAdapter(Context context, List<String> items) {
+        public SimpleStringRecyclerViewAdapter(Context context, List<ImageItem> items) {
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
             mBackground = mTypedValue.resourceId;
             mValues = items;
@@ -116,9 +133,9 @@ public class VideosListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mBoundString = mValues.get(position);
-            holder.mTextView.setText(mValues.get(position));
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
+            holder.mBoundString = mValues.get(position).getMoviename();
+            holder.mTextView.setText(mValues.get(position).getMoviename());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -129,6 +146,17 @@ public class VideosListFragment extends Fragment {
 //                    intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
 //
 //                    context.startActivity(intent);
+                }
+            });
+
+            holder.VideoPreviewPlayButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                   // fragment = new YoutubeOverlayFragment();
+
+                   //  sfragment.onClick(holder.mImageView, mValues.get(position).getMovietrailerurl(), position);
+
                 }
             });
 
